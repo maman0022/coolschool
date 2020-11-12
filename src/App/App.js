@@ -12,6 +12,7 @@ import Courses from '../components/Courses/Courses'
 import SingleCourse from '../components/Courses/SingleCourse'
 import ProtectedRoute from '../components/ProtectedRoute/ProtectedRoute'
 import PublicOrPrivateRoute from '../components/PublicOrPrivateRoute/PublicOrPrivateRoute'
+import CourseRouter from '../components/Courses/CourseRouter'
 
 function App() {
   return (
@@ -22,9 +23,7 @@ function App() {
             <PublicOrPrivateRoute exact path='/' component={LandingPage} />
             <PublicOrPrivateRoute exact path='/register' component={Register} />
             <PublicOrPrivateRoute exact path='/login' component={Login} />
-            <ProtectedRoute exact path='/courses' component={Courses}/>
-            <ProtectedRoute exact path='/courses/:id' component={SingleCourse}/>
-            <ProtectedRoute exact path='/courses/add' component={Courses}/>
+            <Route path='/courses' component={CourseRouter}/>
           </Switch>
       </main>
       <Footer />

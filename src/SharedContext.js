@@ -1,8 +1,10 @@
 import React from 'react'
 
 const SharedContext = React.createContext({
-  userInfo: {},
-  setUser() { }
+  user: null,
+  courses: [],
+  notes: [],
+  essays: []
 })
 
 export default SharedContext
