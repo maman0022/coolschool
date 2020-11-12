@@ -6,3 +6,11 @@
 .add-course-btn{
   margin: 0 0.5rem;
 }
+
+#courses-list{
+  padding: 0;
+}
+
+.course{
+  margin: 0.25rem 0;
+}

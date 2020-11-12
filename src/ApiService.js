@@ -21,6 +21,14 @@ const ApiService = {
       'content-type': 'application/json'
     }
     return fetch(config.BASE_API_URL + 'courses', { method: 'POST', headers, body })
+  },
+  deleteCourse(id) {
+    const body = JSON.stringify({ id })
+    const headers = {
+      'authorization': `bearer ${TokenService.getToken()}`,
+      'content-type': 'application/json'
+    }
+    return fetch(config.BASE_API_URL + 'courses', { method: 'DELETE', headers, body })
   }
 }
 

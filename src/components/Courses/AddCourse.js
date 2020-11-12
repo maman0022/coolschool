@@ -2,8 +2,8 @@ import React from 'react'
 import ApiService from '../../ApiService'
 
 function AddCourse(props){
-
-  function addCourse(e){
+  
+  function handleAddCourse(e){
     e.preventDefault()
     const title = e.target['course-name'].value
     if(title.trim()===''){
@@ -18,11 +18,11 @@ function AddCourse(props){
         props.addCourse(course)
         props.setAdding(false)
       })
-      .catch(()=>props.setError('Unable to add to database'))
+      .catch(error=>props.setError(error.message))
   }
 
   return(
-    <form className='flex-column' onSubmit={addCourse}>
+    <form className='flex-column' onSubmit={handleAddCourse}>
       <label htmlFor='course-name'>Title:</label>
       <input type='text' name='course-name' id='course-name' required></input>
       <div>

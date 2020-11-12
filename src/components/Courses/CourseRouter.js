@@ -9,42 +9,27 @@ import SingleCourse from './SingleCourse'
 import Note from './Note'
 import Essay from './Essay'
 
+export const SharedContext = React.createContext()
+
 function CourseRouter(props) {
   const user = UserService.getUser()
-
-  function setCourses(courses) {
-    setSharedState({ ...sharedState, courses })
-  }
-
-  function setNotesAndEssays(notes, essays) {
-    setSharedState({ ...sharedState, notes, essays })
-  }
-
-  function addCourse(course) {
-    const courses = [...sharedState.courses, course]
-    console.log(sharedState);
-    /* setSharedState({ ...sharedState, courses: [] }) */
-  }
 
   const initialState = {
     user,
     courses: [],
     notes: [],
-    essays: [],
-    setCourses,
-    setNotesAndEssays,
-    addCourse
+    essays: []
   }
 
-  const [sharedState, setSharedState] = useState(initialState)
-
   return (
-    <Switch>
-      <ProtectedRoute exact path='/courses' render={(props) => <Courses {...props} sharedState={sharedState} />} />
-      <ProtectedRoute exact path='/courses/:id' render={(props) => <SingleCourse {...props} sharedState={sharedState} />} />
-      <ProtectedRoute exact path='/courses/:courseid/notes/:id' render={(props) => <Note {...props} sharedState={sharedState} />} />
-      <ProtectedRoute exact path='/courses/:courseid/essays/:id' render={(props) => <Essay {...props} sharedState={sharedState} />} />
-    </Switch>
+    <SharedContext.Provider value={initialState}>
+      <Switch>
+        <ProtectedRoute exact path='/courses' render={(props) => <Courses {...props} />} />
+        <ProtectedRoute exact path='/courses/:id' render={(props) => <SingleCourse {...props} />} />
+        <ProtectedRoute exact path='/courses/:courseid/notes/:id' render={(props) => <Note {...props} />} />
+        <ProtectedRoute exact path='/courses/:courseid/essays/:id' render={(props) => <Essay {...props} />} />
+      </Switch>
+    </SharedContext.Provider>
   )
 }
 

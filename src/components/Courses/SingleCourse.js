@@ -23,7 +23,7 @@ function SingleCourse(props) {
         const {notes, essays} = await response.json()
         props.sharedState.setNotesAndEssays(notes, essays)
       })
-      .catch(() => setError('Unable to retrieve notes and essays'))
+      .catch(error=>setError(error.message))
   }, [])
 
   return (
