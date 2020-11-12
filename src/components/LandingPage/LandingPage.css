@@ -1,0 +1,7 @@
+section {
+  flex: 1;
+}
+
+#get-started-link {
+  background-color: unset;
+}

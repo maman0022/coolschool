@@ -1,7 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App/App';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import 'normalize.css'
+import App from './App/App'
 import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.render(
@@ -11,4 +12,4 @@ ReactDOM.render(
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
-);
+)
