@@ -1,12 +1,11 @@
 import React from 'react'
 import TokenService from '../../TokenService'
 import { Route } from 'react-router-dom'
-import Courses from '../Courses/Courses'
 
-function ProtectedRoute(props) {
+function PublicOrPrivateRoute(props) {
   if (TokenService.verifyToken()) {
     return (
-      <Route path={props.path} component={Courses} />
+      <Route path={props.path} render={(props)=>{props.history.replace('/courses')}} />
     )
   }
   return (
@@ -14,4 +13,4 @@ function ProtectedRoute(props) {
   )
 }
 
-export default ProtectedRoute
+export default PublicOrPrivateRoute

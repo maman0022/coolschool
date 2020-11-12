@@ -8,40 +8,43 @@ import Courses from './Courses'
 import SingleCourse from './SingleCourse'
 import Note from './Note'
 import Essay from './Essay'
-import SharedContext from '../../SharedContext'
 
 function CourseRouter(props) {
   const user = UserService.getUser()
-
-  const initialState = {
-    user,
-    courses: [],
-    notes: [],
-    essays: []
-  }
 
   function setCourses(courses) {
     setSharedState({ ...sharedState, courses })
   }
 
-  const [sharedState, setSharedState] = useState({ initialState })
-
-  const context = {
-    user: sharedState.user,
-    courses: sharedState.courses,
-    notes: sharedState.notes,
-    essays: sharedState.essays
+  function setNotesAndEssays(notes, essays) {
+    setSharedState({ ...sharedState, notes, essays })
   }
 
+  function addCourse(course) {
+    const courses = [...sharedState.courses, course]
+    console.log(sharedState);
+    /* setSharedState({ ...sharedState, courses: [] }) */
+  }
+
+  const initialState = {
+    user,
+    courses: [],
+    notes: [],
+    essays: [],
+    setCourses,
+    setNotesAndEssays,
+    addCourse
+  }
+
+  const [sharedState, setSharedState] = useState(initialState)
+
   return (
-    <SharedContext.Provider value={context}>
-      <Switch>
-        <ProtectedRoute exact path='' component={Courses} setCourses={setCourses}/>
-        {/* <ProtectedRoute exact path='/:id' component={SingleCourse} /> */}
-        <ProtectedRoute exact path='/notes/:id' component={Note} />
-        <ProtectedRoute exact path='/essays/:id' component={Essay} />
-      </Switch>
-    </SharedContext.Provider>
+    <Switch>
+      <ProtectedRoute exact path='/courses' render={(props) => <Courses {...props} sharedState={sharedState} />} />
+      <ProtectedRoute exact path='/courses/:id' render={(props) => <SingleCourse {...props} sharedState={sharedState} />} />
+      <ProtectedRoute exact path='/courses/:courseid/notes/:id' render={(props) => <Note {...props} sharedState={sharedState} />} />
+      <ProtectedRoute exact path='/courses/:courseid/essays/:id' render={(props) => <Essay {...props} sharedState={sharedState} />} />
+    </Switch>
   )
 }
 

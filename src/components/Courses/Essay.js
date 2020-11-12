@@ -4,15 +4,24 @@ import './Courses.css'
 import UserService from '../../UserService'
 import ApiService from '../../ApiService'
 
-function Note(props) {
+function Essay(props) {
+
+  const essay = props.sharedState.essays.find(essay => essay.id === Number(props.match.params.id))
+
+  if(!essay){
+    return (
+      <h5>No such essay exists. Please go back to the course page and try again</h5>
+    )
+  }
+
   return (
     <>
-      <h2>{props.note.title}</h2>
-      <p>{props.note.content}</p>
-      <button>Edit Note</button>
-      <button>Delete Note</button>
+      <h2>{essay.title}</h2>
+      <p>{essay.content}</p>
+      <button>Edit essay</button>
+      <button>Delete essay</button>
     </>
   )
 }
 
-export default Note
+export default Essay

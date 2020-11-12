@@ -3,4 +3,5 @@ main {
   align-self: center;
   height: 100%;
   margin: 1rem auto;
+  flex: 1
 }

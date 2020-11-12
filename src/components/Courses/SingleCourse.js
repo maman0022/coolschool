@@ -3,17 +3,11 @@ import { Link } from 'react-router-dom'
 import './Courses.css'
 import UserService from '../../UserService'
 import ApiService from '../../ApiService'
-import Note from './Note'
 
 function SingleCourse(props) {
-  const defaultState ={
-    currentView: 'notes',
-    notes: [],
-    essays: []
-  }
+
   const [error, setError] = useState(null)
   const [currentView, setCurrentView] = useState('notes')
-  const [notesAndEssays, setNotesAndEssays] = useState({})
   const timeOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
   function handleView(e) {
@@ -26,9 +20,10 @@ function SingleCourse(props) {
         if (!response.ok) {
           throw new Error((await response.json()).message)
         }
-        setNotesAndEssays(await response.json())
+        const {notes, essays} = await response.json()
+        props.sharedState.setNotesAndEssays(notes, essays)
       })
-      .catch(() => setError('Unable to retrieve course'))
+      .catch(() => setError('Unable to retrieve notes and essays'))
   }, [])
 
   return (
@@ -39,8 +34,8 @@ function SingleCourse(props) {
       </nav>
       {error ? <h5>{error}</h5> : void 0}
       <ul>
-        {!!notesAndEssays[currentView] && notesAndEssays[currentView].map(resource => (
-          <li key={resource.id}><Link to='notes' note={resource}> 
+        {!!props.sharedState[currentView] && props.sharedState[currentView].map(resource => (
+          <li key={resource.id}><Link to={`/courses/${props.match.params.id}/${currentView}/${resource.id}`} note={resource}>
             {resource.title}
           </Link> - {new Intl.DateTimeFormat('en-US', timeOptions).format(new Date(resource.date_created))}</li>
         ))}
