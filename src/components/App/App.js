@@ -1,14 +1,15 @@
 import './App.css'
-import '../flex.css'
+import './flex.css'
 import { Route, Switch } from 'react-router-dom'
-import Header from '../components/Header/Header'
-import Footer from '../components/Footer/Footer'
-import LandingPage from '../components/LandingPage/LandingPage'
-import Register from '../components/Register/Register'
-import Login from '../components/Login/Login'
-import ProtectedRoute from '../components/ProtectedRoute/ProtectedRoute'
-import PublicOrPrivateRoute from '../components/PublicOrPrivateRoute/PublicOrPrivateRoute'
-import CourseRouter from '../components/Courses/CourseRouter'
+import Header from '../Header/Header'
+import Footer from '../Footer/Footer'
+import LandingPage from '../LandingPage/LandingPage'
+import Register from '../Register/Register'
+import Login from '../Login/Login'
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
+import PublicOrPrivateRoute from '../PublicOrPrivateRoute/PublicOrPrivateRoute'
+import CourseRouter from '../Courses/CourseRouter'
+import NotFound from '../NotFound/NotFound'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <PublicOrPrivateRoute exact path='/register' component={Register} />
           <PublicOrPrivateRoute exact path='/login' component={Login} />
           <ProtectedRoute path='/courses' component={CourseRouter} />
+          <PublicOrPrivateRoute component={NotFound} />
         </Switch>
       </main>
       <Switch>

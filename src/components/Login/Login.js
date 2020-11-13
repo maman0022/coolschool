@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Login.css'
-import TokenService from '../../TokenService'
-import ApiService from '../../ApiService'
+import TokenService from '../../services/TokenService'
+import ApiService from '../../services/ApiService'
 
 function Login(props) {
   const [error, setError] = useState(null)

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './Register.css'
-import ApiService from '../../ApiService'
+import ApiService from '../../services/ApiService'
 
 function Register(props) {
   const [error, setError] = useState(null)

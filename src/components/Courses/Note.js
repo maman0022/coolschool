@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './Courses.css'
-import ApiService from '../../ApiService'
+import ApiService from '../../services/ApiService'
 
 function Note(props) {
   const [error, setError] = useState(null)
@@ -86,7 +86,7 @@ function Note(props) {
           </div>
         </form> : void 0}
       {!editing ? <h2>{note.title}</h2> : void 0}
-      {!editing ? <p>{note.content}</p> : void 0}
+      {!editing ? <>{note.content.split('\n').map((p, index) => <p key={index}>{p}</p>)}</> : void 0}
       {!editing ? <button onClick={handleEdit}>Edit Note</button> : void 0}
       {!editing ? <button onClick={handleDelete}>Delete Note</button> : void 0}
     </section>

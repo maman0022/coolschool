@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import './Courses.css'
-import ApiService from '../../ApiService'
+import ApiService from '../../services/ApiService'
 import AddCourse from './AddCourse'
 import { SharedContext } from './CourseRouter'
 

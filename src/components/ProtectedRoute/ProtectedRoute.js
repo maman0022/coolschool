@@ -1,5 +1,5 @@
 import React from 'react'
-import TokenService from '../../TokenService'
+import TokenService from '../../services/TokenService'
 import { Route } from 'react-router-dom'
 import Login from '../Login/Login'
 

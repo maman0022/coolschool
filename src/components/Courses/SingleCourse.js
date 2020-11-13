@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Courses.css'
-import ApiService from '../../ApiService'
+import ApiService from '../../services/ApiService'
 import AddNoteOrEssay from './AddNoteOrEssay'
 
 function SingleCourse(props) {

@@ -1,7 +1,7 @@
 import './Header.css'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import TokenService from '../../TokenService'
+import TokenService from '../../services/TokenService'
 
 function Header(props) {
   function checkIfLoggedIn() {
