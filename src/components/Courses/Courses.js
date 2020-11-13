@@ -12,12 +12,12 @@ function Courses(props) {
   const [adding, setAdding] = useState(false)
 
   function addCourse(course) {
-    context.courses.push(course)
+    setCourses([...courses, course])
   }
 
   function handleDeleteCourse(e) {
     const id = e.currentTarget.dataset.id
-    if(!Number(id)){
+    if (!Number(id)) {
       return setError('Unable to determine course ID')
     }
     ApiService.deleteCourse(Number(id))
@@ -27,7 +27,7 @@ function Courses(props) {
         }
         setCourses(courses.filter(course => course.id !== Number(id)))
       })
-      .catch(error=>setError(error.message))
+      .catch(error => setError(error.message))
   }
 
   useEffect(() => {
@@ -40,7 +40,7 @@ function Courses(props) {
         context.courses = courses
         setCourses(courses)
       })
-      .catch(error=>setError(error.message))
+      .catch(error => setError(error.message))
   }, [])
 
   return (

@@ -29,6 +29,9 @@ const ApiService = {
       'content-type': 'application/json'
     }
     return fetch(config.BASE_API_URL + 'courses', { method: 'DELETE', headers, body })
+  },
+  getNote(id) {
+    return fetch(config.BASE_API_URL + `notes/${id}`, { headers: { 'authorization': `bearer ${TokenService.getToken()}` } })
   }
 }
 
