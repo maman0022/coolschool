@@ -1,9 +1,7 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Courses.css'
-import UserService from '../../UserService'
 import ApiService from '../../ApiService'
-import Note from './Note'
 import AddNoteOrEssay from './AddNoteOrEssay'
 
 function SingleCourse(props) {
@@ -13,8 +11,17 @@ function SingleCourse(props) {
   const [adding, setAdding] = useState(false)
   const timeOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
-  function handleView(e) {
+  function handleChangeView(e) {
     setCurrentView(e.currentTarget.innerHTML.toLowerCase())
+  }
+
+  function handleGoBack() {
+    props.history.push('/courses')
+  }
+
+  function addResource(resource, type) {
+    const newArray = [...notesAndEssays[type], resource]
+    setNotesAndEssays({ ...notesAndEssays, [type]: newArray })
   }
 
   useEffect(() => {
@@ -32,8 +39,9 @@ function SingleCourse(props) {
   return (
     <section>
       <nav className='full-width flex-row justify-evenly'>
-        <button onClick={handleView}>Notes</button>
-        <button onClick={handleView}>Essays</button>
+        <button onClick={handleGoBack}>&#8592; Courses</button>
+        <button onClick={handleChangeView}>Notes</button>
+        <button onClick={handleChangeView}>Essays</button>
       </nav>
       {error ? <h5>{error}</h5> : void 0}
       <ul>
@@ -47,7 +55,7 @@ function SingleCourse(props) {
           </Link> - {new Intl.DateTimeFormat('en-US', timeOptions).format(new Date(resource.date_created))}</li>
         ))}
       </ul>
-      {adding ? <AddNoteOrEssay setAdding={setAdding} setError={setError} /> : void 0}
+      {adding ? <AddNoteOrEssay setAdding={setAdding} setError={setError} type={currentView} courseId={props.match.params.id} addResource={addResource} /> : void 0}
       {!adding && <button onClick={() => setAdding(true)}>Add {currentView.charAt(0).toUpperCase() + currentView.substr(1).replace(/s$/, '')}</button>}
     </section>
   )

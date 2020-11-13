@@ -1,16 +1,16 @@
-#course-name{
+#course-name, #resource-name, #resource-content {
   margin: 0.5rem 0;
   width: 90%;
 }
 
-.add-course-btn,.add-resource-btn{
+.add-course-btn, .add-resource-btn {
   margin: 0 0.5rem;
 }
 
-#courses-list{
+#courses-list {
   padding: 0;
 }
 
-.course{
+.course {
   margin: 0.25rem 0;
 }
