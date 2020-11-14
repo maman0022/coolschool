@@ -11,7 +11,7 @@ function AddNoteOrEssay(props) {
     if (!Number(props.courseId)) {
       return props.setError('Course ID is required')
     }
-    const title = e.target['resource-name'].value
+    const title = e.target['resource-title'].value
     const content = e.target['resource-content'].value
     if (title.trim() === '') {
       return props.setError('Title cannot be blank')
@@ -31,14 +31,19 @@ function AddNoteOrEssay(props) {
       .catch(error => props.setError(error.message))
   }
 
+  function handleCancel() {
+    props.setAdding(false)
+    props.setError(null)
+  }
+
   return (
     <form className='flex-column' onSubmit={handleAddNoteOrEssay}>
-      <label htmlFor='resource-name'>Title:</label>
-      <input type='text' name='resource-name' id='resource-name' required></input>
+      <label htmlFor='resource-title'>Title:</label>
+      <input type='text' name='resource-title' id='resource-title' required></input>
       <label htmlFor='resource-content'>Content:</label>
-      <textarea name='resource-content' id='resource-content' rows='5'></textarea>
+      <textarea name='resource-content' id='resource-content' rows={props.type === 'notes' ? 10 : 20}></textarea>
       <div>
-        <button onClick={() => props.setAdding(false)} className='add-resource-btn'>Cancel</button>
+        <button onClick={handleCancel} className='add-resource-btn'>Cancel</button>
         <input type='submit' value='Add' className='add-resource-btn'></input>
       </div>
     </form>

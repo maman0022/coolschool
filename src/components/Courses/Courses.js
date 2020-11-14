@@ -1,18 +1,18 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import './Courses.css'
 import ApiService from '../../services/ApiService'
 import AddCourse from './AddCourse'
-import { SharedContext } from './CourseRouter'
+import UserService from '../../services/UserService'
 
 function Courses(props) {
-  const context = useContext(SharedContext)
-  const [courses, setCourses] = useState(context.courses)
+  const user = UserService.getUser()
+  const [courses, setCourses] = useState([])
   const [error, setError] = useState(null)
   const [adding, setAdding] = useState(false)
 
   function addCourse(course) {
     setCourses([...courses, course])
+    setError(null)
   }
 
   function handleDeleteCourse(e) {
@@ -30,28 +30,31 @@ function Courses(props) {
       .catch(error => setError(error.message))
   }
 
+  function handleAddCourse(){
+    setAdding(true)
+    setError(null)
+  }
+
   useEffect(() => {
     ApiService.getCourses()
       .then(async response => {
         if (!response.ok) {
           throw new Error((await response.json()).message)
         }
-        const courses = await response.json()
-        context.courses = courses
-        setCourses(courses)
+        setCourses(await response.json())
       })
       .catch(error => setError(error.message))
   }, [])
 
   return (
     <section id='courses-section'>
-      <h2>{`Hi ${context.user.first_name},`}</h2>
+      <h2>{`Hi ${user.first_name},`}</h2>
       <h3>Here are your Courses</h3>
       {error ? <h5>{error}</h5> : void 0}
       <ul id='courses-list'>
         {courses.map(course => (
           <li key={course.id} className='flex-row justify-between course'>
-            <Link to={`/courses/${course.id}`}>
+            <Link to={`/courses/${course.id}/notes`}>
               {course.title}
             </Link>
             <button data-id={course.id} onClick={handleDeleteCourse}>Delete</button>
@@ -59,7 +62,7 @@ function Courses(props) {
         ))}
       </ul>
       {adding ? <AddCourse setAdding={setAdding} setError={setError} addCourse={addCourse} /> : void 0}
-      {!adding && <button onClick={() => setAdding(true)}>Add Course</button>}
+      {!adding && <button onClick={handleAddCourse}>Add Course</button>}
     </section>
   )
 }

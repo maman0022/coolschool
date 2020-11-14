@@ -25,8 +25,8 @@ const ApiService = {
   deleteCourse(id) {
     return fetch(config.BASE_API_URL + `courses/${id}`, { method: 'DELETE', headers: { 'authorization': `bearer ${TokenService.getToken()}` } })
   },
-  getNote(id) {
-    return fetch(config.BASE_API_URL + `notes/${id}`, { headers: { 'authorization': `bearer ${TokenService.getToken()}` } })
+  getNote(id, courseId) {
+    return fetch(config.BASE_API_URL + `notes/${id}?course=${courseId}`, { headers: { 'authorization': `bearer ${TokenService.getToken()}` } })
   },
   deleteNote(id) {
     return fetch(config.BASE_API_URL + `notes/${id}`, { method: 'DELETE', headers: { 'authorization': `bearer ${TokenService.getToken()}` } })
@@ -42,8 +42,8 @@ const ApiService = {
     }
     return fetch(config.BASE_API_URL + `notes/${id}`, { method: 'PATCH', headers, body })
   },
-  getEssay(id) {
-    return fetch(config.BASE_API_URL + `essays/${id}`, { headers: { 'authorization': `bearer ${TokenService.getToken()}` } })
+  getEssay(id, courseId) {
+    return fetch(config.BASE_API_URL + `essays/${id}?course=${courseId}`, { headers: { 'authorization': `bearer ${TokenService.getToken()}` } })
   },
   deleteEssay(id) {
     return fetch(config.BASE_API_URL + `essays/${id}`, { method: 'DELETE', headers: { 'authorization': `bearer ${TokenService.getToken()}` } })

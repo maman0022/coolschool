@@ -21,12 +21,17 @@ function AddCourse(props){
       .catch(error=>props.setError(error.message))
   }
 
+  function handleCancel(){
+    props.setAdding(false)
+    props.setError(null)
+  }
+
   return(
     <form className='flex-column' onSubmit={handleAddCourse}>
       <label htmlFor='course-name'>Title:</label>
       <input type='text' name='course-name' id='course-name' required></input>
       <div>
-        <button onClick={()=>props.setAdding(false)} className='add-course-btn'>Cancel</button>
+        <button onClick={handleCancel} className='add-course-btn'>Cancel</button>
         <input type='submit' value='Add' className='add-course-btn'></input>
       </div>
     </form>
