@@ -1,7 +1,8 @@
-section {
-  flex: 1;
+.lp-paragraph{
+  margin-bottom: 0;
 }
 
-#get-started-link {
-  background-color: unset;
+#lp-header{
+  align-self: center;
+  text-align: center;
 }

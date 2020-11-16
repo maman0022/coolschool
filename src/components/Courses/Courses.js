@@ -30,7 +30,7 @@ function Courses(props) {
       .catch(error => setError(error.message))
   }
 
-  function handleAddCourse(){
+  function handleAddCourse() {
     setAdding(true)
     setError(null)
   }
@@ -50,7 +50,8 @@ function Courses(props) {
     <section id='courses-section'>
       <h2>{`Hi ${user.first_name},`}</h2>
       <h3>Here are your Courses</h3>
-      {error ? <h5>{error}</h5> : void 0}
+      {error && <h5 className='error-message'>{error}</h5>}
+      {courses.length === 0 ? <p>You don't have any courses. Click "Add Course" to begin.</p> : void 0}
       <ul id='courses-list'>
         {courses.map(course => (
           <li key={course.id} className='flex-row justify-between course'>
@@ -58,10 +59,11 @@ function Courses(props) {
               {course.title}
             </Link>
             <button data-id={course.id} onClick={handleDeleteCourse}>Delete</button>
+            <input type='color' onChange={(e)=>{alert(e.target.value)}}></input>
           </li>
         ))}
       </ul>
-      {adding ? <AddCourse setAdding={setAdding} setError={setError} addCourse={addCourse} /> : void 0}
+      {adding && <AddCourse setAdding={setAdding} setError={setError} addCourse={addCourse} />}
       {!adding && <button onClick={handleAddCourse}>Add Course</button>}
     </section>
   )

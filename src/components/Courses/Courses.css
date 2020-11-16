@@ -8,9 +8,25 @@
 }
 
 #courses-list {
-  padding: 0;
+  padding: 0.3rem;
+  background-color: darkseagreen;
+  border-radius: 5px;
 }
 
 .course {
   margin: 0.25rem 0;
+  padding: 0.25rem;
+  border-bottom: 1px solid white;
+  color: white;
+}
+
+.course a{
+  color: #303030;
+  text-decoration: none;
+  flex: 1;
+}
+
+.course:last-of-type{
+  border-bottom: 0;
+  margin-bottom: 0;
 }

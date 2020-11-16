@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import './Login.css'
 import TokenService from '../../services/TokenService'
 import ApiService from '../../services/ApiService'
 
-function Login(props) {
+function Demo(props) {
   const [error, setError] = useState(null)
 
   function handleFormSubmit(e) {
@@ -26,19 +25,20 @@ function Login(props) {
   return (
     <section>
       <form className='flex-column align-center' onSubmit={handleFormSubmit}>
-        {!!error && <h5 className='error-message'>{error}</h5>}
+        {error && <h5 className='error-message'>{error}</h5>}
         <div>
           <label htmlFor='email'>Email:</label>
-          <input type='email' id='email' name='email' required></input>
+          <input type='email' id='email' name='email' defaultValue='jd@123.com' required></input>
         </div>
         <div>
           <label htmlFor='password'>Password:</label>
-          <input type='password' id='password' name='password' required></input>
+          <input type='password' id='password' name='password' defaultValue='password' required></input>
         </div>
         <input type='submit' value='Login'></input>
       </form>
+      <p>The demo credentials have been pre-populated. Click login to start the demo.</p>
     </section>
   )
 }
 
-export default Login
+export default Demo

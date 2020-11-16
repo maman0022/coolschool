@@ -7,13 +7,13 @@ function Header(props) {
   function checkIfLoggedIn() {
     if (TokenService.verifyToken()) {
       return (
-        <nav>
-          <button onClick={logout}>Logout</button>
+        <nav id='header-nav'>
+          <Link to='' onClick={logout} className='nav-link'>Logout</Link>
         </nav>
       )
     }
     return (
-      <nav>
+      <nav id='header-nav'>
         <Link to='/login' className='nav-link'>Login</Link>
         <Link to='/register' className='nav-link'>Register</Link>
       </nav>
@@ -26,7 +26,7 @@ function Header(props) {
   }
 
   return (
-    <header className='flex-row justify-between align-center full-width'>
+    <header className='flex-row align-center full-width flex-wrap'>
       <Link to='/' id='main-header'>
         <h1>CoolSchool</h1>
       </Link>

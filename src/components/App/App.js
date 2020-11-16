@@ -10,6 +10,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import PublicOrPrivateRoute from '../PublicOrPrivateRoute/PublicOrPrivateRoute'
 import CourseRouter from '../Courses/CourseRouter'
 import NotFound from '../NotFound/NotFound'
+import Demo from '../Demo/Demo'
 
 function App() {
   return (
@@ -20,12 +21,13 @@ function App() {
           <PublicOrPrivateRoute exact path='/' component={LandingPage} />
           <PublicOrPrivateRoute exact path='/register' component={Register} />
           <PublicOrPrivateRoute exact path='/login' component={Login} />
+          <PublicOrPrivateRoute exact path='/demo' component={Demo} />
           <ProtectedRoute path='/courses' component={CourseRouter} />
           <PublicOrPrivateRoute component={NotFound} />
         </Switch>
       </main>
       <Switch>
-        <Footer exact path={['/', '/register', '/login']} />
+        <Footer exact path={['/', '/register', '/login', '/demo']} />
       </Switch>
     </>
   )

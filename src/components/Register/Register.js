@@ -75,27 +75,27 @@ function Register(props) {
         <div>
           <label htmlFor='fname'>First Name:</label>
           <input type='fname' id='fname' name='fname' required onChange={validateFName}></input>
-          {<h5 className='validation-error'>{fNameError}</h5>}
+          {!!fNameError && <h5 className='validation-error'>{fNameError}</h5>}
         </div>
         <div>
           <label htmlFor='lname'>Last Name:</label>
           <input type='lname' id='lname' name='lname' required onChange={validateLName}></input>
-          {<h5 className='validation-error'>{lNameError}</h5>}
+          {!!lNameError && <h5 className='validation-error'>{lNameError}</h5>}
         </div>
         <div>
           <label htmlFor='email'>Email:</label>
           <input type='email' id='email' name='email' required onChange={validateEmail}></input>
-          {<h5 className='validation-error'>{emailError}</h5>}
+          {!!emailError && <h5 className='validation-error'>{emailError}</h5>}
         </div>
         <div>
           <label htmlFor='password'>Password:</label>
           <input type='password' id='password' name='password' required onChange={validatePassword}></input>
-          {<h5 className='validation-error'>{passwordError}</h5>}
+          {!!passwordError && <h5 className='validation-error'>{passwordError}</h5>}
         </div>
         <div>
           <label htmlFor='confirm-password'>Confirm Password:</label>
           <input type='password' id='confirm-password' name='confirm-password' required onChange={validateConfirm}></input>
-          {<h5 className='validation-error'>{confirmError}</h5>}
+          {!!confirmError && <h5 className='validation-error'>{confirmError}</h5>}
         </div>
         <input type='submit' value='Create Account' id='create-acc-btn' disabled={checkAllAccurate()}></input>
       </form>

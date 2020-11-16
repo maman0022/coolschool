@@ -31,7 +31,7 @@ function AddCourse(props){
       <label htmlFor='course-name'>Title:</label>
       <input type='text' name='course-name' id='course-name' required></input>
       <div>
-        <button onClick={handleCancel} className='add-course-btn'>Cancel</button>
+        <input type='reset' value='Cancel' onClick={handleCancel} className='add-course-btn' ></input>
         <input type='submit' value='Add' className='add-course-btn'></input>
       </div>
     </form>
