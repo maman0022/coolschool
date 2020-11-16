@@ -8,12 +8,13 @@ function SingleCourse(props) {
   const [error, setError] = useState(null)
   const [adding, setAdding] = useState(false)
   const timeOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const resourceCapitalized = props.type.charAt(0).toUpperCase() + props.type.substr(1).replace(/s$/, '')
 
   function handleGoBack() {
     props.history.push('/courses')
   }
 
-  function handleAddResource(){
+  function handleAddResource() {
     setAdding(true)
     setError(null)
   }
@@ -38,11 +39,12 @@ function SingleCourse(props) {
   return (
     <section>
       <nav className='full-width flex-row justify-evenly'>
-        <button onClick={handleGoBack}>&#8592; Courses</button>
-        <NavLink exact to={`/courses/${props.match.params.id}/notes`} activeStyle={{color:'red'}}>Notes</NavLink>
-        <NavLink exact to={`/courses/${props.match.params.id}/essays`} activeStyle={{color:'red'}}>Essays</NavLink>
+        <Link to='/courses'>&#8592; Courses</Link>
+        <NavLink exact to={`/courses/${props.match.params.id}/notes`} activeStyle={{ color: 'red' }}>Notes</NavLink>
+        <NavLink exact to={`/courses/${props.match.params.id}/essays`} activeStyle={{ color: 'red' }}>Essays</NavLink>
       </nav>
-      {error ? <h5>{error}</h5> : void 0}
+      {!!error && <h5 className='error-message'>{error}</h5>}
+      {!adding && notesAndEssays[props.type].length === 0 && <p>You don't have any {props.type}. Click "Add {resourceCapitalized}" to begin.</p>}
       <ul>
         {notesAndEssays[props.type].map(resource => (
           <li key={resource.id}><Link
@@ -54,8 +56,8 @@ function SingleCourse(props) {
           </Link> - {new Intl.DateTimeFormat('en-US', timeOptions).format(new Date(resource.date_created))}</li>
         ))}
       </ul>
-      {adding ? <AddNoteOrEssay setAdding={setAdding} setError={setError} type={props.type} courseId={props.match.params.id} addResource={addResource} /> : void 0}
-      {!adding && <button onClick={handleAddResource}>Add {props.type.charAt(0).toUpperCase() + props.type.substr(1).replace(/s$/, '')}</button>}
+      {adding && <AddNoteOrEssay setAdding={setAdding} setError={setError} type={props.type} courseId={props.match.params.id} addResource={addResource} />}
+      {!adding && <button onClick={handleAddResource} id='add-resource'>Add {resourceCapitalized}</button>}
     </section>
   )
 }

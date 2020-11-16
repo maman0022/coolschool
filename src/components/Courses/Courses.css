@@ -1,6 +1,5 @@
-#course-name, #resource-name, #resource-content {
+#course-name, #resource-title, #resource-content {
   margin: 0.5rem 0;
-  width: 90%;
 }
 
 .add-course-btn, .add-resource-btn {
@@ -9,24 +8,47 @@
 
 #courses-list {
   padding: 0.3rem;
-  background-color: darkseagreen;
   border-radius: 5px;
 }
 
 .course {
-  margin: 0.25rem 0;
-  padding: 0.25rem;
+  margin: 0;
+  padding: 0.3rem;
   border-bottom: 1px solid white;
   color: white;
 }
 
-.course a{
-  color: #303030;
+.course a {
+  color: #ffffff;
   text-decoration: none;
   flex: 1;
+  mix-blend-mode: difference;
 }
 
-.course:last-of-type{
+.course:first-of-type {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.course:last-of-type {
   border-bottom: 0;
   margin-bottom: 0;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.add-form {
+  padding: 1rem;
+  width: 100%;
+  background-color: #184461;
+  color: white;
+  border-radius: 10px;
+}
+
+.add-form>textarea {
+  resize: none;
+}
+
+#add-resource {
+  margin-left: 1rem;
 }

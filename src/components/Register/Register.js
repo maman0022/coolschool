@@ -16,10 +16,7 @@ function Register(props) {
     const userData = {
       fname: fname.value, lname: lname.value, email: email.value, password: password.value
     }
-    const headers = {
-      'content-type': 'application/json'
-    }
-    ApiService.register({ method: 'POST', headers, body: JSON.stringify(userData) })
+    ApiService.register(userData)
       .then(async response => {
         if (!response.ok) {
           throw new Error((await response.json()).message)
@@ -71,7 +68,7 @@ function Register(props) {
   return (
     <section>
       <form className='flex-column' onSubmit={handleFormSubmit}>
-        {error ? <h5>{error}</h5> : void 0}
+        {!!error && <h5 className='error-message'>{error}</h5>}
         <div>
           <label htmlFor='fname'>First Name:</label>
           <input type='fname' id='fname' name='fname' required onChange={validateFName}></input>

@@ -2,7 +2,6 @@ import React from 'react'
 import ApiService from '../../services/ApiService'
 
 function AddNoteOrEssay(props) {
-
   function handleAddNoteOrEssay(e) {
     e.preventDefault()
     if (props.type !== 'notes' && props.type !== 'essays') {
@@ -37,7 +36,7 @@ function AddNoteOrEssay(props) {
   }
 
   return (
-    <form className='flex-column' onSubmit={handleAddNoteOrEssay}>
+    <form className='flex-column add-form' onSubmit={handleAddNoteOrEssay}>
       <label htmlFor='resource-title'>Title:</label>
       <input type='text' name='resource-title' id='resource-title' required></input>
       <label htmlFor='resource-content'>Content:</label>

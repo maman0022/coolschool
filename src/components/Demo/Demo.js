@@ -11,7 +11,7 @@ function Demo(props) {
     const userData = {
       email: email.value, password: password.value
     }
-    ApiService.login({ body: JSON.stringify(userData) })
+    ApiService.login(userData)
       .then(async response => {
         if (!response.ok) {
           throw new Error((await response.json()).message)
@@ -25,7 +25,7 @@ function Demo(props) {
   return (
     <section>
       <form className='flex-column align-center' onSubmit={handleFormSubmit}>
-        {error && <h5 className='error-message'>{error}</h5>}
+        {!!error && <h5 className='error-message'>{error}</h5>}
         <div>
           <label htmlFor='email'>Email:</label>
           <input type='email' id='email' name='email' defaultValue='jd@123.com' required></input>

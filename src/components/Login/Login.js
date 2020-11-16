@@ -12,7 +12,7 @@ function Login(props) {
     const userData = {
       email: email.value, password: password.value
     }
-    ApiService.login({ body: JSON.stringify(userData) })
+    ApiService.login(userData)
       .then(async response => {
         if (!response.ok) {
           throw new Error((await response.json()).message)

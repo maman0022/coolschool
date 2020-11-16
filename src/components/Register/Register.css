@@ -1,16 +1,16 @@
-label{
+label {
   display: block;
 }
 
-form div{
+form div {
   margin-bottom: 1rem;
 }
 
-.validation-error{
+.validation-error {
   color: darkred;
   margin: 0.5rem auto 0 auto;
 }
 
-#create-acc-btn{
+#create-acc-btn {
   width: max-content;
 }

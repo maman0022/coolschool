@@ -10,14 +10,14 @@ import NoteOrEssay from './NoteOrEssay'
 
 function CourseRouter(props) {
   return (
-      <Switch>
-        <ProtectedRoute exact path='/courses' component={Courses} />
-        <ProtectedRoute exact path='/courses/:id/notes' render={(props)=><SingleCourse {...props} type='notes'/>} />
-        <ProtectedRoute exact path='/courses/:id/essays' render={(props)=><SingleCourse {...props} type='essays'/>}/>
-        <ProtectedRoute exact path='/courses/:courseid/notes/:id' render={(props)=><NoteOrEssay {...props} type='note'/>} />
-        <ProtectedRoute exact path='/courses/:courseid/essays/:id' render={(props)=><NoteOrEssay {...props} type='essay'/>} />
-        <PublicOrPrivateRoute component={Courses} />
-      </Switch>
+    <Switch>
+      <ProtectedRoute exact path='/courses' component={Courses} />
+      <ProtectedRoute exact path='/courses/:id/notes' render={(props) => <SingleCourse {...props} type='notes' />} />
+      <ProtectedRoute exact path='/courses/:id/essays' render={(props) => <SingleCourse {...props} type='essays' />} />
+      <ProtectedRoute exact path='/courses/:courseid/notes/:id' render={(props) => <NoteOrEssay {...props} type='note' />} />
+      <ProtectedRoute exact path='/courses/:courseid/essays/:id' render={(props) => <NoteOrEssay {...props} type='essay' />} />
+      <PublicOrPrivateRoute component={Courses} />
+    </Switch>
   )
 }
 

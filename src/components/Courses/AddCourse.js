@@ -27,7 +27,7 @@ function AddCourse(props){
   }
 
   return(
-    <form className='flex-column' onSubmit={handleAddCourse}>
+    <form className='flex-column add-form full-width' onSubmit={handleAddCourse}>
       <label htmlFor='course-name'>Title:</label>
       <input type='text' name='course-name' id='course-name' required></input>
       <div>

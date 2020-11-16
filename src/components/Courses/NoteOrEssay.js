@@ -73,7 +73,7 @@ function NoteOrEssay(props) {
   if (!resource || error) {
     return (
       <section>
-        {error ? <h5>{error}</h5> : void 0}
+        {!!error && <h5 className='error-message'>{error}</h5>}
         <Link to='/courses'>Go Back</Link>
       </section>
     )
@@ -82,7 +82,7 @@ function NoteOrEssay(props) {
   return (
     <section>
       <button onClick={handleGoBack}>&#8592; Course</button>
-      {editing ?
+      {editing &&
         <form className='flex-column' onSubmit={handleSubmit}>
           <label htmlFor='title'>Title:</label>
           <input name='title' id='title' defaultValue={resource.title} />
@@ -92,11 +92,11 @@ function NoteOrEssay(props) {
             <button onClick={handleCancel}>Cancel</button>
             <input type='submit' value='Update' />
           </div>
-        </form> : void 0}
-      {!editing && !!resource ? <h2>{resource.title}</h2> : void 0}
-      {!editing && !!resource ? <>{resource.content.split('\n').map((p, index) => <p key={index}>{p}</p>)}</> : void 0}
-      {!editing && !!resource ? <button onClick={handleEdit}>Edit {resourceCapitalized}</button> : void 0}
-      {!editing && !!resource ? <button onClick={handleDelete}>Delete {resourceCapitalized}</button> : void 0}
+        </form>}
+      {!editing && !!resource && <h2>{resource.title}</h2>}
+      {!editing && !!resource && <>{resource.content.split('\n').map((p, index) => <p key={index}>{p}</p>)}</>}
+      {!editing && !!resource && <button onClick={handleEdit}>Edit {resourceCapitalized}</button>}
+      {!editing && !!resource && <button onClick={handleDelete}>Delete {resourceCapitalized}</button>}
     </section>
   )
 

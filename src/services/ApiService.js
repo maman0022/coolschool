@@ -2,11 +2,13 @@ import config from '../config'
 import TokenService from "./TokenService"
 
 const ApiService = {
-  login(data) {
-    return fetch(config.BASE_API_URL + 'login', { method: 'POST', headers: { 'content-type': 'application/json' }, ...data })
+  login(userData) {
+    const body = JSON.stringify(userData)
+    return fetch(config.BASE_API_URL + 'login', { method: 'POST', headers: { 'content-type': 'application/json' }, body })
   },
-  register(data) {
-    return fetch(config.BASE_API_URL + 'register', { method: 'POST', headers: { 'content-type': 'application/json' }, ...data })
+  register(userData) {
+    const body = JSON.stringify(userData)
+    return fetch(config.BASE_API_URL + 'register', { method: 'POST', headers: { 'content-type': 'application/json' }, body })
   },
   getCourses() {
     return fetch(config.BASE_API_URL + `courses`, { headers: { 'authorization': `bearer ${TokenService.getToken()}` } })
@@ -24,6 +26,16 @@ const ApiService = {
   },
   deleteCourse(id) {
     return fetch(config.BASE_API_URL + `courses/${id}`, { method: 'DELETE', headers: { 'authorization': `bearer ${TokenService.getToken()}` } })
+  },
+  updateCourse(id, color) {
+    const body = JSON.stringify({
+      color
+    })
+    const headers = {
+      'authorization': `bearer ${TokenService.getToken()}`,
+      'content-type': 'application/json'
+    }
+    return fetch(config.BASE_API_URL + `courses/${id}`, { method: 'PATCH', headers, body })
   },
   getNote(id, courseId) {
     return fetch(config.BASE_API_URL + `notes/${id}?course=${courseId}`, { headers: { 'authorization': `bearer ${TokenService.getToken()}` } })
