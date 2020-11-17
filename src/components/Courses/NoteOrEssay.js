@@ -35,8 +35,8 @@ function NoteOrEssay(props) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    const title = e.target['title'].value
-    const content = e.target['content'].value
+    const title = e.target['resource-title'].value
+    const content = e.target['resource-content'].value
     if (title.trim() === '') {
       return setError('Title cannot be blank')
     }
@@ -80,23 +80,27 @@ function NoteOrEssay(props) {
   }
 
   return (
-    <section>
-      <button onClick={handleGoBack}>&#8592; Course</button>
+    <section className='flex-column align-center'>
+      <nav className='full-width flex-row justify-evenly flex-wrap'>
+        <Link className='nav-link' id='back-to-course' to={`/courses/${props.match.params.courseid}/${props.type + 's'}`}>&#8592;Go Back to Course</Link>
+      </nav>
       {editing &&
-        <form className='flex-column' onSubmit={handleSubmit}>
-          <label htmlFor='title'>Title:</label>
-          <input name='title' id='title' defaultValue={resource.title} />
-          <label htmlFor='content'>Content:</label>
-          <textarea name='content' id='content' defaultValue={resource.content} rows={props.type === 'note' ? 10 : 20} />
-          <div>
-            <button onClick={handleCancel}>Cancel</button>
-            <input type='submit' value='Update' />
+        <form className='flex-column full-width add-form' onSubmit={handleSubmit}>
+          <label htmlFor='resource-title'>Title:</label>
+          <input name='resource-title' id='resource-title' defaultValue={resource.title} />
+          <label htmlFor='resource-content'>Content:</label>
+          <textarea name='resource-content' id='resource-content' defaultValue={resource.content} rows={props.type === 'note' ? 10 : 20} />
+          <div className='flex-row justify-end'>
+            <button onClick={handleCancel} className='add-resource-btn'>Cancel</button>
+            <input type='submit' value='Update' className='add-resource-btn' />
           </div>
         </form>}
-      {!editing && !!resource && <h2>{resource.title}</h2>}
-      {!editing && !!resource && <>{resource.content.split('\n').map((p, index) => <p key={index}>{p}</p>)}</>}
-      {!editing && !!resource && <button onClick={handleEdit}>Edit {resourceCapitalized}</button>}
-      {!editing && !!resource && <button onClick={handleDelete}>Delete {resourceCapitalized}</button>}
+      {!editing && !!resource && <h2 id='resource-header'>{resource.title}</h2>}
+      {!editing && !!resource && <>{resource.content.split('\n').map((p, index) => <p className='resource-content-p' key={index}>{p}</p>)}</>}
+      <div className='flex-row justify-around full-width'>
+        {!editing && !!resource && <button onClick={handleDelete}>Delete {resourceCapitalized}</button>}
+        {!editing && !!resource && <button onClick={handleEdit}>Edit {resourceCapitalized}</button>}
+      </div>
     </section>
   )
 

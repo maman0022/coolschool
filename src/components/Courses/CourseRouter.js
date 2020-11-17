@@ -7,7 +7,6 @@ import Courses from './Courses'
 import SingleCourse from './SingleCourse'
 import NoteOrEssay from './NoteOrEssay'
 
-
 function CourseRouter(props) {
   return (
     <Switch>

@@ -39,13 +39,13 @@ function SingleCourse(props) {
   return (
     <section className='flex-column align-center'>
       <nav className='full-width flex-row justify-evenly flex-wrap'>
-        <Link to='/courses' id='back-to-courses'className='nav-link'>&#8592; Go Back to Courses</Link>
-        <NavLink className='resource-link' exact to={`/courses/${props.match.params.id}/notes`} activeStyle={{ color: 'red' }}>Notes</NavLink>
-        <NavLink className='resource-link' exact to={`/courses/${props.match.params.id}/essays`} activeStyle={{ color: 'red' }}>Essays</NavLink>
+        <Link to='/courses' id='back-to-courses' className='nav-link'>&#8592; Go Back to Courses</Link>
+        <NavLink className='resource-link' exact to={`/courses/${props.match.params.id}/notes`} activeStyle={{ color: '#E60000' }}>Notes</NavLink>
+        <NavLink className='resource-link' exact to={`/courses/${props.match.params.id}/essays`} activeStyle={{ color: '#E60000' }}>Essays</NavLink>
       </nav>
       {!!error && <h5 className='error-message'>{error}</h5>}
-      {!adding && notesAndEssays[props.type].length === 0 && <p>You don't have any {props.type}. Click "Add {resourceCapitalized}" to begin.</p>}
-      <ul>
+      {!adding && notesAndEssays[props.type].length === 0 && <p className='resource-content-p instructions'>You don't have any {props.type}. Click "Add {resourceCapitalized}" to begin.</p>}
+      {(notesAndEssays[props.type].length > 0 || adding) && <ul>
         {notesAndEssays[props.type].map(resource => (
           <li key={resource.id} className='resource'><Link
             to={{
@@ -55,7 +55,7 @@ function SingleCourse(props) {
             {resource.title}
           </Link> - {new Intl.DateTimeFormat('en-US', timeOptions).format(new Date(resource.date_created))}</li>
         ))}
-      </ul>
+      </ul>}
       {adding && <AddNoteOrEssay setAdding={setAdding} setError={setError} type={props.type} courseId={props.match.params.id} addResource={addResource} />}
       {!adding && <button onClick={handleAddResource}>Add {resourceCapitalized}</button>}
     </section>

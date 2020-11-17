@@ -20,7 +20,7 @@ function Header(props) {
     )
   }
 
-  function logout(){
+  function logout() {
     TokenService.clearToken()
     props.history.push('/')
   }

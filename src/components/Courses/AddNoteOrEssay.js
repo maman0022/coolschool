@@ -41,7 +41,7 @@ function AddNoteOrEssay(props) {
       <input type='text' name='resource-title' id='resource-title' required></input>
       <label htmlFor='resource-content'>Content:</label>
       <textarea name='resource-content' id='resource-content' rows={props.type === 'notes' ? 10 : 20}></textarea>
-      <div>
+      <div className='flex-row justify-end'>
         <button onClick={handleCancel} className='add-resource-btn'>Cancel</button>
         <input type='submit' value='Add' className='add-resource-btn'></input>
       </div>

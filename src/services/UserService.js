@@ -4,8 +4,8 @@ const UserService = {
   getUser() {
     const payload = TokenService.getTokenPayload()
     return {
-      id:payload.id,
-      first_name:payload.first_name
+      id: payload.id,
+      first_name: payload.first_name
     }
   }
 }

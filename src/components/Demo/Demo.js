@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import TokenService from '../../services/TokenService'
 import ApiService from '../../services/ApiService'
+import './Demo.css'
 
 function Demo(props) {
   const [error, setError] = useState(null)
@@ -36,7 +37,7 @@ function Demo(props) {
         </div>
         <input type='submit' value='Login'></input>
       </form>
-      <p>The demo credentials have been pre-populated. Click login to start the demo.</p>
+      <p className='instructions'>The demo credentials have been pre-populated. Click login to start the demo.</p>
     </section>
   )
 }

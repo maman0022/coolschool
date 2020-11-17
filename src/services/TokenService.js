@@ -18,7 +18,7 @@ const TokenService = {
     try {
       const payload = this.getTokenPayload()
       return payload.exp >= Date.now() / 1000
-    } catch(error){
+    } catch (error) {
       return false
     }
   }

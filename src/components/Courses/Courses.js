@@ -65,24 +65,25 @@ function Courses(props) {
   }, [])
 
   return (
-    <section id='courses-section'>
-      <h2>{`Hi ${user.first_name},`}</h2>
-      <h3>Here are your Courses</h3>
+    <section className='flex-column'>
+      <h2 id='courses-heading-1'>{`Hi ${user.first_name},`}</h2>
+      <h3 id='courses-heading-2'>Here are your courses,</h3>
       {error && <h5 className='error-message'>{error}</h5>}
-      {courses.length === 0 && <p>You don't have any courses. Click "Add Course" to begin.</p>}
-      <ul id='courses-list'>
+      {courses.length === 0 && <p className='instructions'>You don't have any courses. Click "Add Course" to begin.</p>}
+      {courses.length > 0 && <ul id='courses-list'>
         {courses.map(course => (
           <li key={course.id} className='flex-row justify-between align-center course' style={{ backgroundColor: course.color }}>
             <Link to={`/courses/${course.id}/notes`}>
               {course.title}
             </Link>
             <button data-id={course.id} onClick={handleDeleteCourse}>Delete</button>
-            <input data-id={course.id} type='color' onChange={handleUpdateCourse} defaultValue={course.color}></input>
+            <label className='hidden' htmlFor={`color-picker-${course.id}`}>Color Picker</label>
+            <input data-id={course.id} type='color' name={`color-picker-${course.id}`} id={`color-picker-${course.id}`} onChange={handleUpdateCourse} defaultValue={course.color}></input>
           </li>
         ))}
-      </ul>
+      </ul>}
       {adding && <AddCourse setAdding={setAdding} setError={setError} addCourse={addCourse} />}
-      {!adding && <button onClick={handleAddCourse} className='add-course-btn'>Add Course</button>}
+      {!adding && <button onClick={handleAddCourse} id='add-course-btn'>Add Course</button>}
     </section>
   )
 }
