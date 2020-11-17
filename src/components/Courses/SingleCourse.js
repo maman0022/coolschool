@@ -37,17 +37,17 @@ function SingleCourse(props) {
   }, [])
 
   return (
-    <section>
-      <nav className='full-width flex-row justify-evenly'>
-        <Link to='/courses'>&#8592; Courses</Link>
-        <NavLink exact to={`/courses/${props.match.params.id}/notes`} activeStyle={{ color: 'red' }}>Notes</NavLink>
-        <NavLink exact to={`/courses/${props.match.params.id}/essays`} activeStyle={{ color: 'red' }}>Essays</NavLink>
+    <section className='flex-column align-center'>
+      <nav className='full-width flex-row justify-evenly flex-wrap'>
+        <Link to='/courses' id='back-to-courses'className='nav-link'>&#8592; Go Back to Courses</Link>
+        <NavLink className='resource-link' exact to={`/courses/${props.match.params.id}/notes`} activeStyle={{ color: 'red' }}>Notes</NavLink>
+        <NavLink className='resource-link' exact to={`/courses/${props.match.params.id}/essays`} activeStyle={{ color: 'red' }}>Essays</NavLink>
       </nav>
       {!!error && <h5 className='error-message'>{error}</h5>}
       {!adding && notesAndEssays[props.type].length === 0 && <p>You don't have any {props.type}. Click "Add {resourceCapitalized}" to begin.</p>}
       <ul>
         {notesAndEssays[props.type].map(resource => (
-          <li key={resource.id}><Link
+          <li key={resource.id} className='resource'><Link
             to={{
               pathname: `/courses/${props.match.params.id}/${props.type}/${resource.id}`,
               state: { [props.type]: resource }
@@ -57,7 +57,7 @@ function SingleCourse(props) {
         ))}
       </ul>
       {adding && <AddNoteOrEssay setAdding={setAdding} setError={setError} type={props.type} courseId={props.match.params.id} addResource={addResource} />}
-      {!adding && <button onClick={handleAddResource} id='add-resource'>Add {resourceCapitalized}</button>}
+      {!adding && <button onClick={handleAddResource}>Add {resourceCapitalized}</button>}
     </section>
   )
 }

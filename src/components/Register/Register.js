@@ -67,29 +67,29 @@ function Register(props) {
 
   return (
     <section>
-      <form className='flex-column' onSubmit={handleFormSubmit}>
+      <form className='flex-column align-center' onSubmit={handleFormSubmit}>
         {!!error && <h5 className='error-message'>{error}</h5>}
-        <div>
+        <div className='register-form-div'>
           <label htmlFor='fname'>First Name:</label>
           <input type='fname' id='fname' name='fname' required onChange={validateFName}></input>
           {!!fNameError && <h5 className='validation-error'>{fNameError}</h5>}
         </div>
-        <div>
+        <div className='register-form-div'>
           <label htmlFor='lname'>Last Name:</label>
           <input type='lname' id='lname' name='lname' required onChange={validateLName}></input>
           {!!lNameError && <h5 className='validation-error'>{lNameError}</h5>}
         </div>
-        <div>
+        <div className='register-form-div'>
           <label htmlFor='email'>Email:</label>
           <input type='email' id='email' name='email' required onChange={validateEmail}></input>
           {!!emailError && <h5 className='validation-error'>{emailError}</h5>}
         </div>
-        <div>
+        <div className='register-form-div'>
           <label htmlFor='password'>Password:</label>
           <input type='password' id='password' name='password' required onChange={validatePassword}></input>
           {!!passwordError && <h5 className='validation-error'>{passwordError}</h5>}
         </div>
-        <div>
+        <div className='register-form-div'>
           <label htmlFor='confirm-password'>Confirm Password:</label>
           <input type='password' id='confirm-password' name='confirm-password' required onChange={validateConfirm}></input>
           {!!confirmError && <h5 className='validation-error'>{confirmError}</h5>}

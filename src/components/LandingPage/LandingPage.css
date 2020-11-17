@@ -5,4 +5,7 @@
 #lp-header {
   align-self: center;
   text-align: center;
+  font-family: monospace;
+  font-size: xx-large;
+  color: #0c2231;
 }

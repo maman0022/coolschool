@@ -14,3 +14,7 @@ form div {
 #create-acc-btn {
   width: max-content;
 }
+
+.register-form-div {
+  width: min-content;
+}

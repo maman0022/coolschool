@@ -49,6 +49,16 @@
   resize: none;
 }
 
-#add-resource {
-  margin-left: 1rem;
+#back-to-courses {
+  flex-basis: 80%;
+  text-align: center;
+}
+
+.resource{
+  margin: 0.5rem 0;
+}
+
+.resource-link {
+  flex-basis: 50%;
+  text-align: center;
 }

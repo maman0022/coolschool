@@ -18,8 +18,10 @@ header {
   padding: 0.1rem 0.3rem;
   border-radius: 10px;
   margin: 0.5rem;
-  color: #520000;
   text-decoration: none;
+  width: 8ch;
+  display: inline-block;
+  text-align: center;
 }
 
 .nav-link:hover, .nav-link:focus {
