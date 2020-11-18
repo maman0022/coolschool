@@ -12,8 +12,7 @@ for that course. The course page contains the users notes and essays.
 
 ![course page](https://i.ibb.co/vDpFrW4/course-Page.png)  
   
-Users can add or view the ones they already created. Clicking on a specific note or essay displays the contents.  
-From here users can delete or edit it.  
+Users can add or view the ones they already created. Clicking on a specific note or essay displays the contents. From here users can delete or edit it.  
   
 ![note page](https://i.ibb.co/ZJtJPBr/notePage.png)  
   
