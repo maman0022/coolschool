@@ -70,6 +70,8 @@
 #resource-header {
   font-family: monospace;
   text-decoration: underline;
+  text-align: center;
+  font-size: xx-large;
 }
 
 .resource-content-p {

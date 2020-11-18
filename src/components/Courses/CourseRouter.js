@@ -5,7 +5,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import PublicOrPrivateRoute from '../PublicOrPrivateRoute/PublicOrPrivateRoute'
 import Courses from './Courses'
 import SingleCourse from './SingleCourse'
-import NoteOrEssay from './NoteOrEssay'
+import NoteOrEssay from '../NoteAndEssay/NoteOrEssay'
 
 function CourseRouter(props) {
   return (

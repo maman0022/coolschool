@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import ApiService from '../../services/ApiService'
-import AddNoteOrEssay from './AddNoteOrEssay'
+import AddNoteOrEssay from '../NoteAndEssay/AddNoteOrEssay'
 
 function SingleCourse(props) {
   const [notesAndEssays, setNotesAndEssays] = useState({ notes: [], essays: [] })
@@ -9,10 +9,6 @@ function SingleCourse(props) {
   const [adding, setAdding] = useState(false)
   const timeOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   const resourceCapitalized = props.type.charAt(0).toUpperCase() + props.type.substr(1).replace(/s$/, '')
-
-  function handleGoBack() {
-    props.history.push('/courses')
-  }
 
   function handleAddResource() {
     setAdding(true)
@@ -50,7 +46,7 @@ function SingleCourse(props) {
           <li key={resource.id} className='resource'><Link
             to={{
               pathname: `/courses/${props.match.params.id}/${props.type}/${resource.id}`,
-              state: { [props.type]: resource }
+              state: { [props.type.replace(/s$/, '')]: resource }
             }}>
             {resource.title}
           </Link> - {new Intl.DateTimeFormat('en-US', timeOptions).format(new Date(resource.date_created))}</li>
