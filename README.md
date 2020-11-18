@@ -17,6 +17,6 @@ Users can add or view the ones they already created. Clicking on a specific note
 ![note page](https://i.ibb.co/ZJtJPBr/notePage.png)  
   
 ## Tech Stack  
-This is a React based app built using functional components and hooks, with React Router handling navigation.  
-The back-end is hosted on Heroku and uses PostgreSQL as the persistence layer. More information on the back-end  
-can be found here - https://github.com/maman0022/coolschool-server.
+This is a React based app built using functional components and hooks, with React Router handling navigation. 
+ 
+The back-end is hosted on Heroku and uses PostgreSQL as the persistence layer. More information on the back-end can be found here - https://github.com/maman0022/coolschool-server.
