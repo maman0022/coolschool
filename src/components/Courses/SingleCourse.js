@@ -4,7 +4,7 @@ import ApiService from '../../services/ApiService'
 import AddNoteOrEssay from '../NoteAndEssay/AddNoteOrEssay'
 
 function SingleCourse(props) {
-  const [notesAndEssays, setNotesAndEssays] = useState({ notes: [], essays: [] })
+  const [course, setCourse] = useState({ notes: [], essays: [], course: {} })
   const [error, setError] = useState(null)
   const [adding, setAdding] = useState(false)
   const timeOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -16,8 +16,8 @@ function SingleCourse(props) {
   }
 
   function addResource(resource, type) {
-    const newArray = [...notesAndEssays[type], resource]
-    setNotesAndEssays({ ...notesAndEssays, [type]: newArray })
+    const newArray = [...course[type], resource]
+    setCourse({ ...course, [type]: newArray })
   }
 
   useEffect(() => {
@@ -26,23 +26,24 @@ function SingleCourse(props) {
         if (!response.ok) {
           throw new Error((await response.json()).message)
         }
-        const { notes, essays } = await response.json()
-        setNotesAndEssays({ notes, essays })
+        const { notes, essays, course } = await response.json()
+        setCourse({ notes, essays, course })
       })
       .catch(error => setError(error.message))
   }, [])
 
   return (
     <section className='flex-column align-center'>
+      <h2 className='signin-header' style={{ color: course.course.color }}>{course.course.title}</h2>
       <nav className='full-width flex-row justify-evenly flex-wrap'>
         <Link to='/courses' id='back-to-courses' className='nav-link'>&#8592; Go Back to Courses</Link>
         <NavLink className='resource-link' exact to={`/courses/${props.match.params.id}/notes`} activeStyle={{ color: '#E60000' }}>Notes</NavLink>
         <NavLink className='resource-link' exact to={`/courses/${props.match.params.id}/essays`} activeStyle={{ color: '#E60000' }}>Essays</NavLink>
       </nav>
       {!!error && <h5 className='error-message'>{error}</h5>}
-      {!adding && notesAndEssays[props.type].length === 0 && <p className='resource-content-p instructions'>You don't have any {props.type}. Click "Add {resourceCapitalized}" to begin.</p>}
-      {(notesAndEssays[props.type].length > 0 || adding) && <ul>
-        {notesAndEssays[props.type].map(resource => (
+      {!adding && course[props.type].length === 0 && <p className='resource-content-p instructions'>You don't have any {props.type}. Click "Add {resourceCapitalized}" to begin.</p>}
+      {(course[props.type].length > 0 || adding) && <ul>
+        {course[props.type].map(resource => (
           <li key={resource.id} className='resource'><Link
             to={{
               pathname: `/courses/${props.match.params.id}/${props.type}/${resource.id}`,

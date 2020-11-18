@@ -24,7 +24,8 @@ function Login(props) {
   }
 
   return (
-    <section>
+    <section className='flex-column align-center'>
+      <h2 className='signin-header'>Login</h2>
       <form className='flex-column align-center' onSubmit={handleFormSubmit}>
         {!!error && <h5 className='error-message'>{error}</h5>}
         <div>

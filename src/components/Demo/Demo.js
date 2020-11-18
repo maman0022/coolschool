@@ -24,7 +24,8 @@ function Demo(props) {
   }
 
   return (
-    <section>
+    <section className='flex-column align-center'>
+      <h2 className='signin-header'>Demo</h2>
       <form className='flex-column align-center' onSubmit={handleFormSubmit}>
         {!!error && <h5 className='error-message'>{error}</h5>}
         <div>

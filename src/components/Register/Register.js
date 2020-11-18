@@ -66,17 +66,18 @@ function Register(props) {
   }
 
   return (
-    <section>
+    <section className='flex-column align-center'>
+      <h2 className='signin-header'>Register</h2>
       <form className='flex-column align-center' onSubmit={handleFormSubmit}>
         {!!error && <h5 className='error-message'>{error}</h5>}
         <div className='register-form-div'>
           <label htmlFor='fname'>First Name:</label>
-          <input type='fname' id='fname' name='fname' required onChange={validateFName}></input>
+          <input type='text' id='fname' name='fname' required onChange={validateFName}></input>
           {!!fNameError && <h5 className='validation-error'>{fNameError}</h5>}
         </div>
         <div className='register-form-div'>
           <label htmlFor='lname'>Last Name:</label>
-          <input type='lname' id='lname' name='lname' required onChange={validateLName}></input>
+          <input type='text' id='lname' name='lname' required onChange={validateLName}></input>
           {!!lNameError && <h5 className='validation-error'>{lNameError}</h5>}
         </div>
         <div className='register-form-div'>
