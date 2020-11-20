@@ -58,4 +58,16 @@ function EditNoteOrEssay(props) {
   )
 }
 
+EditNoteOrEssay.defaultProps = {
+  resource: {
+    title: '',
+    content: ''
+  },
+  type: 'notes',
+  capitalized: '',
+  id: 1,
+  setError() { },
+  setEditing() { }
+}
+
 export default EditNoteOrEssay

@@ -101,4 +101,10 @@ function Register(props) {
   )
 }
 
+Register.defaultProps = {
+  history: {
+    push() { }
+  }
+}
+
 export default Register

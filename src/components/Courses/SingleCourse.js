@@ -59,4 +59,13 @@ function SingleCourse(props) {
   )
 }
 
+SingleCourse.defaultProps = {
+  match: {
+    params: {
+      id: 1
+    }
+  },
+  type: 'notes',
+}
+
 export default SingleCourse

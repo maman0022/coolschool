@@ -1,13 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import EditNoteOrEssay from './EditNoteOrEssay'
 import { BrowserRouter } from 'react-router-dom'
 
 it('renders to the DOM', () => {
   const div = document.createElement('div')
   ReactDOM.render(
     <BrowserRouter>
-      <App />
+      <EditNoteOrEssay />
     </BrowserRouter>, div)
   ReactDOM.unmountComponentAtNode(div)
 })

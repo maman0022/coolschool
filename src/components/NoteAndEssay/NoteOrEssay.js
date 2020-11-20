@@ -63,7 +63,19 @@ function NoteOrEssay(props) {
       </div>
     </section>
   )
+}
 
+NoteOrEssay.defaultProps = {
+  match: {
+    params: {
+      id: 1,
+      courseid: 1
+    }
+  },
+  location: {
+    state: {}
+  },
+  type: 'note'
 }
 
 export default NoteOrEssay

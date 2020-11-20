@@ -64,4 +64,13 @@ function AddNoteOrEssay(props) {
   )
 }
 
+AddNoteOrEssay.defaultProps = {
+  courseId: 1,
+  type: 'notes',
+  id: 1,
+  setError() { },
+  setAdding() { },
+  addResource() { }
+}
+
 export default AddNoteOrEssay

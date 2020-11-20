@@ -35,4 +35,10 @@ function Header(props) {
   )
 }
 
+Header.defaultProps = {
+  history: {
+    push() { }
+  }
+}
+
 export default Header

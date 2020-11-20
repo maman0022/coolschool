@@ -9,7 +9,10 @@ const TokenService = {
     window.localStorage.removeItem('user')
   },
   getTokenPayload() {
-    const token = this.getToken()
+    const token = this.getToken() || ''
+    if (!token) {
+      return null
+    }
     let payload = token.split('.')[1]
     payload = atob(payload)
     return JSON.parse(payload)

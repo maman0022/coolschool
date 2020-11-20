@@ -48,4 +48,10 @@ function AddCourse(props) {
   )
 }
 
+AddCourse.defaultProps = {
+  addCourse() { },
+  setAdding() { },
+  setError() { }
+}
+
 export default AddCourse

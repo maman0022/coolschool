@@ -43,4 +43,10 @@ function Demo(props) {
   )
 }
 
+Demo.defaultProps = {
+  history: {
+    push() { }
+  }
+}
+
 export default Demo

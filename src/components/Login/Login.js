@@ -42,4 +42,10 @@ function Login(props) {
   )
 }
 
+Login.defaultProps = {
+  history: {
+    push() { }
+  }
+}
+
 export default Login
