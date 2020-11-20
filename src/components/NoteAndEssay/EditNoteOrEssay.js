@@ -64,7 +64,7 @@ EditNoteOrEssay.defaultProps = {
     title: '',
     content: ''
   },
-  type: 'notes',
+  type: 'note',
   capitalized: '',
   id: 1,
   setError() { },
@@ -76,7 +76,7 @@ EditNoteOrEssay.propTypes = {
     title: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired
   }),
-  type: PropTypes.oneOf(['notes', 'essays']).isRequired,
+  type: PropTypes.oneOf(['note', 'essay']).isRequired,
   capitalized: PropTypes.string.isRequired,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   setError: PropTypes.func.isRequired,
