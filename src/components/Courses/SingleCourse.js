@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import ApiService from '../../services/ApiService'
 import AddNoteOrEssay from '../NoteAndEssay/AddNoteOrEssay'
+import PropTypes from 'prop-types'
 
 function SingleCourse(props) {
   const [course, setCourse] = useState({ notes: [], essays: [], course: {} })
@@ -66,6 +67,15 @@ SingleCourse.defaultProps = {
     }
   },
   type: 'notes',
+}
+
+SingleCourse.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    })
+  }),
+  type: PropTypes.oneOf(['notes', 'essays']).isRequired
 }
 
 export default SingleCourse

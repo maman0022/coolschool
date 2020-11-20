@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import ApiService from '../../services/ApiService'
 import { Link } from 'react-router-dom'
 import EditNoteOrEssay from './EditNoteOrEssay'
+import PropTypes from 'prop-types'
 
 function NoteOrEssay(props) {
   const [error, setError] = useState(null)
@@ -76,6 +77,19 @@ NoteOrEssay.defaultProps = {
     state: {}
   },
   type: 'note'
+}
+
+NoteOrEssay.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      courseid: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired
+    })
+  }),
+  location: PropTypes.shape({
+    state: PropTypes.object.isRequired
+  }),
+  type: PropTypes.oneOf(['note', 'essay']).isRequired
 }
 
 export default NoteOrEssay

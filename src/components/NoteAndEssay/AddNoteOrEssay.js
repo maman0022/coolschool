@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import ApiService from '../../services/ApiService'
+import PropTypes from 'prop-types'
 
 function AddNoteOrEssay(props) {
   const [titleError, setTitleError] = useState(null)
@@ -71,6 +72,15 @@ AddNoteOrEssay.defaultProps = {
   setError() { },
   setAdding() { },
   addResource() { }
+}
+
+AddNoteOrEssay.propTypes = {
+  courseId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  type: PropTypes.oneOf(['notes', 'essays']).isRequired,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  setError: PropTypes.func.isRequired,
+  setAdding: PropTypes.func.isRequired,
+  addResource: PropTypes.func.isRequired
 }
 
 export default AddNoteOrEssay

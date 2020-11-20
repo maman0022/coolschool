@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import TokenService from '../../services/TokenService'
 import ApiService from '../../services/ApiService'
 import './Demo.css'
+import PropTypes from 'prop-types'
 
 function Demo(props) {
   const [error, setError] = useState(null)
@@ -47,6 +48,12 @@ Demo.defaultProps = {
   history: {
     push() { }
   }
+}
+
+Demo.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  })
 }
 
 export default Demo

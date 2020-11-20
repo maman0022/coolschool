@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './Login.css'
 import TokenService from '../../services/TokenService'
 import ApiService from '../../services/ApiService'
+import PropTypes from 'prop-types'
 
 function Login(props) {
   const [error, setError] = useState(null)
@@ -46,6 +47,12 @@ Login.defaultProps = {
   history: {
     push() { }
   }
+}
+
+Login.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  })
 }
 
 export default Login

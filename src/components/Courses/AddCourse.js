@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import ApiService from '../../services/ApiService'
+import PropTypes from 'prop-types'
 
 function AddCourse(props) {
   const [titleError, setTitleError] = useState(null)
@@ -52,6 +53,12 @@ AddCourse.defaultProps = {
   addCourse() { },
   setAdding() { },
   setError() { }
+}
+
+AddCourse.propTypes = {
+  addCourse: PropTypes.func.isRequired,
+  setAdding: PropTypes.func.isRequired,
+  setError: PropTypes.func.isRequired
 }
 
 export default AddCourse

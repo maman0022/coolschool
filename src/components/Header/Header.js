@@ -2,6 +2,7 @@ import './Header.css'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import TokenService from '../../services/TokenService'
+import PropTypes from 'prop-types'
 
 function Header(props) {
   function checkIfLoggedIn() {
@@ -39,6 +40,12 @@ Header.defaultProps = {
   history: {
     push() { }
   }
+}
+
+Header.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  })
 }
 
 export default Header

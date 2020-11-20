@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Register.css'
 import ApiService from '../../services/ApiService'
+import PropTypes from 'prop-types'
 
 function Register(props) {
   const [error, setError] = useState(null)
@@ -105,6 +106,12 @@ Register.defaultProps = {
   history: {
     push() { }
   }
+}
+
+Register.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  })
 }
 
 export default Register
