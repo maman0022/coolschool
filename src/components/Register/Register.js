@@ -10,9 +10,12 @@ function Register(props) {
   const [emailError, setEmailError] = useState()
   const [passwordError, setPasswordError] = useState()
   const [confirmError, setConfirmError] = useState()
+  const [loading, setLoading] = useState(false)
 
   function handleFormSubmit(e) {
     e.preventDefault()
+    setError(null)
+    setLoading(true)
     const { fname, lname, email, password } = e.target
     const userData = {
       fname: fname.value, lname: lname.value, email: email.value, password: password.value
@@ -25,6 +28,7 @@ function Register(props) {
         props.history.push('/login')
       })
       .catch(error => setError(error.message))
+      .finally(() => setLoading(false))
   }
 
   function validateFName(e) {
@@ -71,6 +75,7 @@ function Register(props) {
       <h2 className='signin-header'>Register</h2>
       <form className='flex-column align-center' onSubmit={handleFormSubmit}>
         {!!error && <h5 className='error-message'>{error}</h5>}
+        {loading && !error && <h3 className='loading-message'>Loading</h3>}
         <div className='register-form-div'>
           <label htmlFor='fname'>First Name:</label>
           <input type='text' id='fname' name='fname' required onChange={validateFName}></input>

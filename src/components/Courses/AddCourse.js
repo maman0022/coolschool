@@ -3,13 +3,16 @@ import ApiService from '../../services/ApiService'
 import PropTypes from 'prop-types'
 
 function AddCourse(props) {
-  const [titleError, setTitleError] = useState(null)
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   function handleAddCourse(e) {
     e.preventDefault()
+    setLoading(true)
+    setError(null)
     const title = e.target['course-name'].value
     if (title.trim() === '') {
-      return setTitleError('Title cannot be blank')
+      return setError('Title cannot be blank')
     }
     ApiService.addCourse(title)
       .then(async response => {
@@ -20,30 +23,32 @@ function AddCourse(props) {
         props.addCourse(course)
         props.setAdding(false)
       })
-      .catch(error => props.setError(error.message))
+      .catch(error => setError(error.message))
+      .finally(() => setLoading(false))
   }
 
   function handleCancel() {
     props.setAdding(false)
-    props.setError(null)
-    setTitleError(null)
+    setError(null)
+    setLoading(false)
   }
 
   function validateCourse(e) {
     if (e.currentTarget.value.trim() === "") {
-      return setTitleError(`Title cannot be empty`)
+      return setError(`Title cannot be empty`)
     }
-    setTitleError(null)
+    setError(null)
   }
 
   return (
     <form className='flex-column add-form full-width' onSubmit={handleAddCourse}>
       <label htmlFor='course-name'>Title:</label>
       <input type='text' name='course-name' id='course-name' onChange={validateCourse} required />
-      {!!titleError && <h5 className='error-message form-error'>{titleError}</h5>}
+      {!!error && <h5 className='error-message form-error'>{error}</h5>}
+      {loading && !error && <h3 className='loading-message'>Loading</h3>}
       <div className='flex-row justify-end'>
         <input type='reset' value='Cancel' onClick={handleCancel} className='add-resource-btn' />
-        <input type='submit' value='Add' className='add-resource-btn' disabled={titleError} />
+        <input type='submit' value='Add' className='add-resource-btn' disabled={error} />
       </div>
     </form>
   )

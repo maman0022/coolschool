@@ -6,9 +6,12 @@ import PropTypes from 'prop-types'
 
 function Demo(props) {
   const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   function handleFormSubmit(e) {
     e.preventDefault()
+    setLoading(true)
+    setError(null)
     const { email, password } = e.target
     const userData = {
       email: email.value, password: password.value
@@ -22,11 +25,13 @@ function Demo(props) {
         props.history.push('/courses')
       })
       .catch(error => setError(error.message))
+      .finally(() => setLoading(false))
   }
 
   return (
     <section className='flex-column align-center'>
       <h2 className='signin-header'>Demo</h2>
+      {loading && !error && <h3 className='loading-message'>Loading</h3>}
       <form className='flex-column align-center' onSubmit={handleFormSubmit}>
         {!!error && <h5 className='error-message'>{error}</h5>}
         <div>

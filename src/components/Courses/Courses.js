@@ -9,6 +9,7 @@ function Courses(props) {
   const [courses, setCourses] = useState([])
   const [error, setError] = useState(null)
   const [adding, setAdding] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   function addCourse(course) {
     setCourses([...courses, course])
@@ -20,6 +21,8 @@ function Courses(props) {
     if (!Number(id)) {
       return setError('Unable to determine course ID')
     }
+    setLoading(true)
+    setError(null)
     ApiService.deleteCourse(Number(id))
       .then(async response => {
         if (!response.ok) {
@@ -28,6 +31,7 @@ function Courses(props) {
         setCourses(courses.filter(course => course.id !== Number(id)))
       })
       .catch(error => setError(error.message))
+      .finally(() => setLoading(false))
   }
 
   function handleAddCourse() {
@@ -54,6 +58,8 @@ function Courses(props) {
   }
 
   useEffect(() => {
+    setLoading(true)
+    setError(null)
     ApiService.getCourses()
       .then(async response => {
         if (!response.ok) {
@@ -62,6 +68,7 @@ function Courses(props) {
         setCourses(await response.json())
       })
       .catch(error => setError(error.message))
+      .finally(() => setLoading(false))
   }, [])
 
   return (
@@ -69,7 +76,8 @@ function Courses(props) {
       <h2 id='courses-heading-1'>{`Hi ${user.first_name},`}</h2>
       <h3 id='courses-heading-2'>Here are your courses,</h3>
       {error && <h5 className='error-message'>{error}</h5>}
-      {courses.length === 0 && <p className='instructions'>You don't have any courses. Click "Add Course" to begin.</p>}
+      {loading && !error && <h3 className='loading-message'>Loading</h3>}
+      {!loading && courses.length === 0 && <p className='instructions'>You don't have any courses. Click "Add Course" to begin.</p>}
       {courses.length > 0 && <ul id='courses-list'>
         {courses.map(course => (
           <li key={course.id} className='flex-row justify-between align-center course' style={{ backgroundColor: course.color }}>
@@ -82,7 +90,7 @@ function Courses(props) {
           </li>
         ))}
       </ul>}
-      {adding && <AddCourse setAdding={setAdding} setError={setError} addCourse={addCourse} />}
+      {adding && <AddCourse setAdding={setAdding} addCourse={addCourse} />}
       {!adding && <button onClick={handleAddCourse} id='add-course-btn'>Add Course</button>}
     </section>
   )
