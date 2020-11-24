@@ -8,6 +8,7 @@ function SingleCourse(props) {
   const [course, setCourse] = useState({ notes: [], essays: [], course: {} })
   const [error, setError] = useState(null)
   const [adding, setAdding] = useState(false)
+  const [loading, setLoading] = useState(false)
   const timeOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   const resourceCapitalized = props.type.charAt(0).toUpperCase() + props.type.substr(1).replace(/s$/, '')
 
@@ -22,6 +23,8 @@ function SingleCourse(props) {
   }
 
   useEffect(() => {
+    setLoading(true)
+    setError(null)
     ApiService.getCourse(props.match.params.id)
       .then(async response => {
         if (!response.ok) {
@@ -31,6 +34,7 @@ function SingleCourse(props) {
         setCourse({ notes, essays, course })
       })
       .catch(error => setError(error.message))
+      .finally(() => setLoading(false))
   }, [])
 
   return (
@@ -42,7 +46,8 @@ function SingleCourse(props) {
         <NavLink className='resource-link' exact to={`/courses/${props.match.params.id}/essays`} activeStyle={{ color: '#E60000' }}>Essays</NavLink>
       </nav>
       {!!error && <h5 className='error-message'>{error}</h5>}
-      {!adding && course[props.type].length === 0 && <p className='resource-content-p instructions'>You don't have any {props.type}. Click "Add {resourceCapitalized}" to begin.</p>}
+      {loading && !error && <h3 className='loading-message'>Loading</h3>}
+      {!loading && !adding && course[props.type].length === 0 && <p className='resource-content-p instructions'>You don't have any {props.type}. Click "Add {resourceCapitalized}" to begin.</p>}
       {(course[props.type].length > 0 || adding) && <ul>
         {course[props.type].map(resource => (
           <li key={resource.id} className='resource'><Link
