@@ -9,3 +9,20 @@
   font-size: xx-large;
   text-decoration: underline;
 }
+
+.loading-message {
+  display: block;
+  animation-name: blinking;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes blinking {
+  from {
+    color: #000000;
+  }
+  to {
+    color: #ffffff;
+  }
+}
