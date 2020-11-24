@@ -16,6 +16,8 @@
   animation-duration: 0.5s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
+  align-self: center;
+  margin: 0.5rem auto;
 }
 
 @keyframes blinking {

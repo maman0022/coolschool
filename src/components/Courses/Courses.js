@@ -82,7 +82,7 @@ function Courses(props) {
           </li>
         ))}
       </ul>}
-      {adding && <AddCourse setAdding={setAdding} setError={setError} addCourse={addCourse} />}
+      {adding && <AddCourse setAdding={setAdding} addCourse={addCourse} />}
       {!adding && <button onClick={handleAddCourse} id='add-course-btn'>Add Course</button>}
     </section>
   )
