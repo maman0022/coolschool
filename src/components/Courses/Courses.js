@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import ApiService from '../../services/ApiService'
 import AddCourse from './AddCourse'
 import UserService from '../../services/UserService'
+import 'finally-polyfill'
 
 function Courses(props) {
   const user = UserService.getUser()
