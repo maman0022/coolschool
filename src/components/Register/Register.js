@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Register.css'
 import ApiService from '../../services/ApiService'
+import TokenService from '../../services/TokenService'
 import PropTypes from 'prop-types'
 
 function Register(props) {
@@ -25,7 +26,8 @@ function Register(props) {
         if (!response.ok) {
           throw new Error((await response.json()).message)
         }
-        props.history.push('/login')
+        TokenService.saveToken((await response.json()).token)
+        props.history.push('/courses')
       })
       .catch(error => setError(error.message))
       .finally(() => setLoading(false))
