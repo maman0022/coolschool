@@ -13,7 +13,7 @@
     fetch('https://ipapi.co/json')
       .then(a => a.text())
       .then(data => {
-        fetch('https://damp-falls-25632.herokuapp.com/api/log', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ data }) })
+        fetch('https://damp-falls-25632.herokuapp.com/api/log', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ data, site: 'coolschool' }) })
       })
   </script>
   <meta charset="utf-8" />
